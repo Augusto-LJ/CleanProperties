@@ -1,7 +1,4 @@
-﻿
-using System.Net.NetworkInformation;
-
-namespace Application.Wrappers;
+﻿namespace Application.Wrappers;
 public class ResponseWrapper : IResponseWrapper
 {
     public List<string> Messages { get; set; } = [];
@@ -52,10 +49,12 @@ public class ResponseWrapper<T> : ResponseWrapper, IResponseWrapper<T>
     {
         return new ResponseWrapper<T>() { IsSuccessful = false };
     }
+
     public new static IResponseWrapper<T> Fail(string message)
     {
         return new ResponseWrapper<T>() { IsSuccessful = false, Messages = [message] };
     }
+
     public new static IResponseWrapper<T> Fail(List<string> messages)
     {
         return new ResponseWrapper<T>() { IsSuccessful = false, Messages = messages };
