@@ -1,4 +1,6 @@
-﻿using Infrastructure.Contexts;
+﻿using Application.Features.Agents;
+using Infrastructure.Contexts;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,7 @@ public static class Startup
                 .UseSqlServer(config.GetConnectionString("DefaultConnection"), builder =>
                 {
                     builder.MigrationsHistoryTable("Migrations", "EFCore");
-                }));
+                }))
+            .AddScoped<IAgentService, AgentService>(); ;
     }
 }

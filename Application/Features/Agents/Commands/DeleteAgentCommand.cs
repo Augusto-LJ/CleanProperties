@@ -13,6 +13,9 @@ public class DeleteAgentCommandHandler(IAgentService _agentService) : IRequestHa
     {
         var agentId = await _agentService.DeleteAsync(request.AgentId);
 
-        return ResponseWrapper<int>.Success(data: agentId, message: "Agent deleted successfully.");
+        if (agentId is not 0)
+            return ResponseWrapper<int>.Success(data: agentId, message: "Agent deleted successfully.");
+
+        return ResponseWrapper<int>.Fail(message: "Agent does not exist.");
     }
 }

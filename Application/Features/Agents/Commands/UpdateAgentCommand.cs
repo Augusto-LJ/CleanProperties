@@ -21,6 +21,9 @@ public class UpdateAgentCommandHandler(IAgentService agentService) : IRequestHan
 
         var updatedAgent = await _agentService.UpdateAsync(agent);
 
-        return ResponseWrapper<AgentResponse>.Success(data: updatedAgent.Adapt<AgentResponse>(), message: "Agent updated successfully.");
+        if (updatedAgent is not null)
+            return ResponseWrapper<AgentResponse>.Success(data: updatedAgent.Adapt<AgentResponse>(), message: "Agent updated successfully.");
+
+        return ResponseWrapper<AgentResponse>.Fail(message: "Agent does not exist");
     }
 }
