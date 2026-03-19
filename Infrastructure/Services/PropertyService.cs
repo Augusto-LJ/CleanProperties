@@ -57,4 +57,9 @@ public class PropertyService(ApplicationDbContext context) : IPropertyService
 
         return null;
     }
+
+    public async Task<List<Property>> GetByAgentIdAsync(int agentId)
+    {
+        return await _context.Properties.Where(property => property.AgentId == agentId).ToListAsync();
+    }
 }
