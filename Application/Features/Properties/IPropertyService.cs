@@ -9,4 +9,5 @@ public interface IPropertyService
     Task<Property> GetByIdAsync(int id);
     Task<List<Property>> GetAllAsync();
     Task<bool> DoesExistAsync(int id);
+    Task<List<Property>> GetByAgentIdAsync(int agentId);
 }
