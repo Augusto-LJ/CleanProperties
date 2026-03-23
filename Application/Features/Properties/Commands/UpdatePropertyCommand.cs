@@ -6,7 +6,7 @@ using Mapster;
 using MediatR;
 
 namespace Application.Features.Properties.Commands;
-public class UpdatePropertyCommand : IRequest<ResponseWrapper>
+public class UpdatePropertyCommand : IRequest<IResponseWrapper>
 {
     public UpdatePropertyRequest UpdateProperty { get; set; }
 }

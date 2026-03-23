@@ -9,6 +9,7 @@ public class PropertyService(ApplicationDbContext context) : IPropertyService
     private readonly ApplicationDbContext _context = context;
     public async Task<int> CreateAsync(Property newProperty)
     {
+        newProperty.ListingDate = DateTime.UtcNow;
         await _context.Properties.AddAsync(newProperty);
         await _context.SaveChangesAsync();
 
