@@ -1,4 +1,5 @@
 ﻿using Application.Features.Agents;
+using Application.Features.Properties;
 using Infrastructure.Contexts;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ public static class Startup
                 {
                     builder.MigrationsHistoryTable("Migrations", "EFCore");
                 }))
-            .AddScoped<IAgentService, AgentService>(); ;
+            .AddScoped<IAgentService, AgentService>()
+            .AddScoped<IPropertyService, PropertyService>();
     }
 }
