@@ -1,11 +1,12 @@
 ﻿using Application.Models.Requests;
+using Application.Pipelines;
 using Application.Wrappers;
 using Domain.Entities;
 using Mapster;
 using MediatR;
 
 namespace Application.Features.Properties.Commands;
-public class CreatePropertyCommand : IRequest<IResponseWrapper>
+public class CreatePropertyCommand : IRequest<IResponseWrapper>, IValidatable
 {
     public CreatePropertyRequest CreateProperty { get; set; }
 }

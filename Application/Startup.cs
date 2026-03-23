@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Application.Pipelines;
+using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace Application;
@@ -12,6 +15,8 @@ public static class Startup
             .AddMediatR(config =>
             {
                 config.RegisterServicesFromAssembly(assembly);
-            });
+            })
+            .AddValidatorsFromAssembly(assembly)
+            .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
     }
 }
