@@ -1,5 +1,5 @@
 ﻿using Application.Models.Requests;
-using Application.Pipelines;
+using Application.Pipelines.Contracts;
 using Application.Wrappers;
 using Domain.Entities;
 using Mapster;

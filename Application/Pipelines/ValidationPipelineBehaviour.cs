@@ -1,4 +1,5 @@
-﻿using Application.Wrappers;
+﻿using Application.Pipelines.Contracts;
+using Application.Wrappers;
 using FluentValidation;
 using MediatR;
 

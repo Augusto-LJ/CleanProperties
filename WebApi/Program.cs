@@ -19,6 +19,13 @@ public class Program
         builder.Services.AddInfrastructureServices(builder.Configuration);
         builder.Services.AddApplicationServices();
 
+        var cacheSettings = builder.Services.GetCacheSettings(builder.Configuration);
+
+        builder.Services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = cacheSettings.DestinationUrl;
+        });
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
