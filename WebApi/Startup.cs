@@ -1,4 +1,5 @@
-﻿using WebApi.Endpoints.Properties;
+﻿using Application;
+using WebApi.Endpoints.Properties;
 
 namespace WebApi;
 
@@ -13,5 +14,12 @@ public static class Startup
         propertyGroup.MapGetPropertyByIdEndpoint();
         propertyGroup.MapGetAllPropertiesEndpoint();
         propertyGroup.MapGetPropertiesByAgentIdEndpoint();
+    }
+
+    public static CacheSettings GetCacheSettings(this IServiceCollection services, IConfiguration configuration)
+    {
+        var cacheSettingsConfig = configuration.GetSection("CacheSettings");
+        services.Configure<CacheSettings>(cacheSettingsConfig);
+        return cacheSettingsConfig.Get<CacheSettings>();
     }
 }
