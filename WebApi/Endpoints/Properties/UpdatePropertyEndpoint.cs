@@ -19,6 +19,9 @@ public static class UpdatePropertyEndpoint
 
             return Results.NotFound(response);
         })
+        .WithName(nameof(UpdatePropertyEndpoint))
+        .WithSummary("Updates a Property")
+        .WithDescription("This endpoint is used to update all information about an specified Property")
         .Produces<ResponseWrapper<PropertyResponse>>(StatusCodes.Status200OK)
         .Produces<ResponseWrapper<PropertyResponse>>(StatusCodes.Status404NotFound);
     }

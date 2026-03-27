@@ -18,6 +18,9 @@ public static class CreatePropertyEndpoint
 
             return Results.BadRequest(response);
         })
+        .WithName(nameof(CreatePropertyEndpoint))
+        .WithSummary("Creates a new Property")
+        .WithDescription("This endpoint is used to create a new Property with the provided details.")
         .Produces<ResponseWrapper<int>>(StatusCodes.Status200OK)
         .Produces<ResponseWrapper<int>>(StatusCodes.Status400BadRequest);
     }

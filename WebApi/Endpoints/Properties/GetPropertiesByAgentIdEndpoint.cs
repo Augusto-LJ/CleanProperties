@@ -18,6 +18,9 @@ public static class GetPropertiesByAgentIdEndpoint
 
             return Results.NotFound(response);
         })
+        .WithName(nameof(GetPropertiesByAgentIdEndpoint))
+        .WithSummary("Retrieves all Properties of an agent")
+        .WithDescription("This endpoint is used to retrieve all existing Properties of an agent with specified agentId.")
         .Produces<ResponseWrapper<List<PropertyResponse>>>(StatusCodes.Status200OK)
         .Produces<ResponseWrapper<List<PropertyResponse>>>(StatusCodes.Status404NotFound);
     }

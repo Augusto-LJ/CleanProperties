@@ -17,6 +17,9 @@ public static class DeletePropertyEndpoint
 
             return Results.NotFound(response);
         })
+        .WithName(nameof(DeletePropertyEndpoint))
+        .WithSummary("Deletes a Property")
+        .WithDescription("This endpoint is used to delete a Property with the specified id.")
         .Produces<ResponseWrapper<int>>(StatusCodes.Status200OK)
         .Produces<ResponseWrapper<int>>(StatusCodes.Status404NotFound);
     }
