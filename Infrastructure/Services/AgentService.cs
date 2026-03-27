@@ -37,12 +37,52 @@ public class AgentService(ApplicationDbContext context) : IAgentService
 
     public async Task<List<Agent>> GetAllAsync()
     {
-        return await _context.Agents.ToListAsync();
+        return await _context
+            .Agents
+            .Include(agent => agent.PropertyListings)
+            .Select(agent => new Agent
+            {
+                Id = agent.Id,
+                FirstName = agent.FirstName,
+                LastName = agent.LastName,
+                PhoneNumber = agent.PhoneNumber,
+                Email = agent.Email,
+                PropertyListings = agent.PropertyListings.Select(property => new Property
+                {
+                    Id = property.Id,
+                    AgentId = property.AgentId,
+                    ShortDescription = property.ShortDescription,
+                    LongDescription = property.LongDescription,
+                    ListingDate = property.ListingDate,
+                    Price = property.Price
+                }).ToList()
+            })
+            .ToListAsync();
     }
 
     public async Task<Agent> GetByIdAsync(int id)
     {
-        var agentInDb = await _context.Agents.FirstOrDefaultAsync(agent => agent.Id == id);
+        var agentInDb = await _context
+            .Agents
+            .Include(agent => agent.PropertyListings)
+            .Select(agent => new Agent
+            {
+                Id = agent.Id,
+                FirstName = agent.FirstName,
+                LastName = agent.LastName,
+                PhoneNumber = agent.PhoneNumber,
+                Email = agent.Email,
+                PropertyListings = agent.PropertyListings.Select(property => new Property
+                {
+                    Id = property.Id,
+                    AgentId = property.AgentId,
+                    ShortDescription = property.ShortDescription,
+                    LongDescription = property.LongDescription,
+                    ListingDate = property.ListingDate,
+                    Price = property.Price
+                }).ToList()
+            })
+            .FirstOrDefaultAsync(agent => agent.Id == id);
 
         return agentInDb is not null ? agentInDb : null;
     }

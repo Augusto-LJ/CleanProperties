@@ -37,12 +37,52 @@ public class PropertyService(ApplicationDbContext context) : IPropertyService
 
     public async Task<List<Property>> GetAllAsync()
     {
-        return await _context.Properties.ToListAsync();
+        return await _context
+            .Properties
+            .Include(property => property.Agent)
+            .Select(property => new Property
+            {
+                Id = property.Id,
+                AgentId = property.AgentId,
+                ShortDescription = property.ShortDescription,
+                LongDescription = property.LongDescription,
+                Price = property.Price,
+                ListingDate = property.ListingDate,
+                Agent = new Agent
+                {
+                    Id = property.AgentId,
+                    FirstName = property.Agent.FirstName,
+                    LastName = property.Agent.LastName,
+                    Email = property.Agent.Email,
+                    PhoneNumber = property.Agent.PhoneNumber
+                }
+            })
+            .ToListAsync();
     }
 
     public async Task<Property> GetByIdAsync(int id)
     {
-        var propertyInDb = await _context.Properties.FirstOrDefaultAsync(property => property.Id == id);
+        var propertyInDb = await _context
+            .Properties
+            .Include(property => property.Agent)
+            .Select(property => new Property
+            {
+                Id = property.Id,
+                AgentId = property.AgentId,
+                ShortDescription = property.ShortDescription,
+                LongDescription = property.LongDescription,
+                Price = property.Price,
+                ListingDate = property.ListingDate,
+                Agent = new Agent
+                {
+                    Id = property.AgentId,
+                    FirstName = property.Agent.FirstName,
+                    LastName = property.Agent.LastName,
+                    Email = property.Agent.Email,
+                    PhoneNumber = property.Agent.PhoneNumber
+                }
+            })
+            .FirstOrDefaultAsync(property => property.Id == id);
 
         return propertyInDb is not null ? propertyInDb : null;
     }
@@ -61,6 +101,26 @@ public class PropertyService(ApplicationDbContext context) : IPropertyService
 
     public async Task<List<Property>> GetByAgentIdAsync(int agentId)
     {
-        return await _context.Properties.Where(property => property.AgentId == agentId).ToListAsync();
+        return await _context
+            .Properties
+            .Include(property => property.Agent)
+            .Select(property => new Property
+            {
+                Id = property.Id,
+                AgentId = property.AgentId,
+                ShortDescription = property.ShortDescription,
+                LongDescription = property.LongDescription,
+                Price = property.Price,
+                ListingDate = property.ListingDate,
+                Agent = new Agent
+                {
+                    Id = property.AgentId,
+                    FirstName = property.Agent.FirstName,
+                    LastName = property.Agent.LastName,
+                    Email = property.Agent.Email,
+                    PhoneNumber = property.Agent.PhoneNumber
+                }
+            })
+            .Where(property => property.AgentId == agentId).ToListAsync();
     }
 }
