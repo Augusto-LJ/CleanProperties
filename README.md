@@ -5,5 +5,11 @@
 - Mapster for better object mapping
 - Entity Framework as ORM
 - MediatR and CQRS
-- FluentValidation for request and domain level validations via pipeline (only implemented for CreatePropertyCommand, need to implement for all commands and queries)
+- FluentValidation for request and domain level validations via pipeline
 - Redis for caching
+
+To do:
+- Implement fluent validation for all commands and queries
+- Create documentation for all endpoints (agents and properties)
+- Implement caching in all endpoints (agents and properties)
+- Write automated tests (unit and integration)
