@@ -11,7 +11,7 @@ public static class GetPropertyByIdEndpoint
     {
         return endpoint.MapGet("/{id}", async (int id, ISender sender) =>
         {
-            var response = await sender.Send(new GetPropertyByIdQuery { Id = id });
+            var response = await sender.Send(new GetPropertyByIdQuery(id));
 
             if (response.IsSuccessful)
                 return Results.Ok(response);
