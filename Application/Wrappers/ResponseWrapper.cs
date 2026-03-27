@@ -42,7 +42,7 @@ public class ResponseWrapper : IResponseWrapper
 
 public class ResponseWrapper<T> : ResponseWrapper, IResponseWrapper<T>
 {
-    public T Data { get; private set; }
+    public T Data { get; set; }
 
     #region Failures
     public new static IResponseWrapper<T> Fail()

@@ -17,6 +17,7 @@ public static class Startup
                 config.RegisterServicesFromAssembly(assembly);
             })
             .AddValidatorsFromAssembly(assembly)
-            .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
+            .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>))
+            .AddTransient(typeof(IPipelineBehavior<,>), typeof(CachePipelineBehaviour<,>));
     }
 }
