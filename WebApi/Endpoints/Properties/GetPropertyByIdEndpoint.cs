@@ -18,6 +18,9 @@ public static class GetPropertyByIdEndpoint
 
             return Results.NotFound(response);
         })
+        .WithName(nameof(GetPropertyByIdEndpoint))
+        .WithSummary("Retrieves an specific Property")
+        .WithDescription("This endpoint is used to retrieve an Property with specified id.")
         .Produces<ResponseWrapper<PropertyResponse>>(StatusCodes.Status200OK)
         .Produces<ResponseWrapper<PropertyResponse>>(StatusCodes.Status404NotFound);
     }

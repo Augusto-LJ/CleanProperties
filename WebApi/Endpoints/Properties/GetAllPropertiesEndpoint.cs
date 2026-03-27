@@ -18,6 +18,9 @@ public static class GetAllPropertiesEndpoint
 
             return Results.NotFound(response);
         })
+        .WithName(nameof(GetAllPropertiesEndpoint))
+        .WithSummary("Retrieves all Properties")
+        .WithDescription("This endpoint is used to retrieve all existing Properties.")
         .Produces<ResponseWrapper<List<PropertyResponse>>>(StatusCodes.Status200OK)
         .Produces<ResponseWrapper<List<PropertyResponse>>>(StatusCodes.Status404NotFound);
     }
