@@ -11,7 +11,7 @@ public static class GetPropertiesByAgentIdEndpoint
     {
         return endpoint.MapGet("/agent/{agentId}", async (int agentId, ISender sender) =>
         {
-            var response = await sender.Send(new GetPropertiesByAgentIdQuery { AgentId = agentId });
+            var response = await sender.Send(new GetPropertiesByAgentIdQuery(agentId));
 
             if (response.IsSuccessful)
                 return Results.Ok(response);
