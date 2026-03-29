@@ -43,7 +43,7 @@ public class AgentsController : BaseController
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAgentByIdAsync(int id)
     {
-        var response = await Sender.Send(new GetAgentByIdQuery { AgentId = id });
+        var response = await Sender.Send(new GetAgentByIdQuery(id));
 
         if (response.IsSuccessful)
             return Ok(response);
