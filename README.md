@@ -12,3 +12,4 @@ To do:
 - Implement fluent validation for all commands and queries
 - Create documentation for all endpoints (agents and properties)
 - Write automated tests (unit and integration)
+- Create issue: when updating an agent or a property, rewrite information in cache (when you get and agent by id, update this agent and then get by id again, it shows the old information)
