@@ -5,9 +5,9 @@ using Mapster;
 using MediatR;
 
 namespace Application.Features.Agents.Commands;
-public class CreateAgentCommand : IRequest<IResponseWrapper>
+public class CreateAgentCommand(CreateAgentRequest createAgent) : IRequest<IResponseWrapper>
 {
-    public CreateAgentRequest CreateAgent { get; set; }
+    public CreateAgentRequest CreateAgent { get; set; } = createAgent;
 }
 
 public class CreateAgentCommandHandler(IAgentService agentService) : IRequestHandler<CreateAgentCommand, IResponseWrapper>

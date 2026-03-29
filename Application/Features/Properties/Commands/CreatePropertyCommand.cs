@@ -6,9 +6,9 @@ using Mapster;
 using MediatR;
 
 namespace Application.Features.Properties.Commands;
-public class CreatePropertyCommand : IRequest<IResponseWrapper>, IValidatable
+public class CreatePropertyCommand(CreatePropertyRequest createProperty) : IRequest<IResponseWrapper>, IValidatable
 {
-    public CreatePropertyRequest CreateProperty { get; set; }
+    public CreatePropertyRequest CreateProperty { get; set; } = createProperty;
 }
 
 public class CreatePropertyCommandHandler(IPropertyService propertyService) : IRequestHandler<CreatePropertyCommand, IResponseWrapper>

@@ -10,7 +10,7 @@ public class AgentsController : BaseController
     [HttpPost("add")]
     public async Task<IActionResult> CreateAgentAsync([FromBody] CreateAgentRequest createAgent)
     {
-        var response = await Sender.Send(new CreateAgentCommand { CreateAgent = createAgent });
+        var response = await Sender.Send(new CreateAgentCommand(createAgent));
 
         if (response.IsSuccessful)
             return Ok(response);
@@ -21,7 +21,7 @@ public class AgentsController : BaseController
     [HttpPut("update")]
     public async Task<IActionResult> UpdateAgentAsync([FromBody] UpdateAgentRequest updateAgent)
     {
-        var response = await Sender.Send(new UpdateAgentCommand { UpdateAgent = updateAgent });
+        var response = await Sender.Send(new UpdateAgentCommand(updateAgent));
 
         if (response.IsSuccessful)
             return Ok(response);
@@ -32,7 +32,7 @@ public class AgentsController : BaseController
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAgentAsync(int id)
     {
-        var response = await Sender.Send(new DeleteAgentCommand { AgentId = id });
+        var response = await Sender.Send(new DeleteAgentCommand(id));
 
         if (response.IsSuccessful)
             return Ok(response);

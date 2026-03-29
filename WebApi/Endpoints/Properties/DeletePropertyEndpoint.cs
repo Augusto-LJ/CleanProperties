@@ -10,7 +10,7 @@ public static class DeletePropertyEndpoint
     {
         return endpoint.MapDelete("/{id}", async (int id, ISender sender) =>
         {
-            var response = await sender.Send(new DeletePropertyCommand { Id = id });
+            var response = await sender.Send(new DeletePropertyCommand(id));
 
             if (response.IsSuccessful)
                 return Results.Ok(response);
