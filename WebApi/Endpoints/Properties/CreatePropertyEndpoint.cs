@@ -11,7 +11,7 @@ public static class CreatePropertyEndpoint
     {
         return endpoint.MapPost("/add", async (CreatePropertyRequest request, ISender sender) =>
         {
-            var response = await sender.Send(new CreatePropertyCommand { CreateProperty = request });
+            var response = await sender.Send(new CreatePropertyCommand(request));
 
             if (response.IsSuccessful)
                 return Results.Ok(response);

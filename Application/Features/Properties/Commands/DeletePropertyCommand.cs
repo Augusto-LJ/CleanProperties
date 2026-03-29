@@ -3,9 +3,9 @@ using MediatR;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Features.Properties.Commands;
-public class DeletePropertyCommand : IRequest<IResponseWrapper>
+public class DeletePropertyCommand(int id) : IRequest<IResponseWrapper>
 {
-    public int Id { get; set; }
+    public int Id { get; set; } = id;
 }
 
 public class DeletePropertyCommandHandler(IPropertyService propertyService) : IRequestHandler<DeletePropertyCommand, IResponseWrapper>

@@ -6,9 +6,9 @@ using Mapster;
 using MediatR;
 
 namespace Application.Features.Agents.Commands;
-public class UpdateAgentCommand : IRequest<IResponseWrapper>
+public class UpdateAgentCommand(UpdateAgentRequest updateAgent) : IRequest<IResponseWrapper>
 {
-    public UpdateAgentRequest UpdateAgent { get; set; }
+    public UpdateAgentRequest UpdateAgent { get; set; } = updateAgent;
 }
 
 public class UpdateAgentCommandHandler(IAgentService agentService) : IRequestHandler<UpdateAgentCommand, IResponseWrapper>

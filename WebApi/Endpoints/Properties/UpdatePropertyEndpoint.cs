@@ -12,7 +12,7 @@ public static class UpdatePropertyEndpoint
     {
         return endpoint.MapPut("/update", async (UpdatePropertyRequest request, ISender sender) =>
         {
-            var response = await sender.Send(new UpdatePropertyCommand { UpdateProperty = request });
+            var response = await sender.Send(new UpdatePropertyCommand(request));
 
             if (response.IsSuccessful)
                 return Results.Ok(response);

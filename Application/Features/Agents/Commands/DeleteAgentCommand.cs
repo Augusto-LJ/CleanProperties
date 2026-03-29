@@ -2,9 +2,9 @@
 using MediatR;
 
 namespace Application.Features.Agents.Commands;
-public class DeleteAgentCommand : IRequest<IResponseWrapper>
+public class DeleteAgentCommand(int agentId) : IRequest<IResponseWrapper>
 {
-    public int AgentId { get; set; }
+    public int AgentId { get; set; } = agentId;
 }
 
 public class DeleteAgentCommandHandler(IAgentService _agentService) : IRequestHandler<DeleteAgentCommand, IResponseWrapper>
