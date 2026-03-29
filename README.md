@@ -11,5 +11,4 @@
 To do:
 - Implement fluent validation for all commands and queries
 - Create documentation for all endpoints (agents and properties)
-- Implement caching in all endpoints (agents and properties)
 - Write automated tests (unit and integration)
