@@ -65,7 +65,7 @@ This project showcases a real-world real estate management system, focusing on p
 - Mapster 7.4.0
 - StackExchange.Redis (Caching)
 
-**Testing:**
+**Testing: (in progress)**
 - xUnit
 - Moq
 - FluentAssertions
